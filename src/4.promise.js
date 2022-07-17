@@ -186,22 +186,20 @@ class Promise {
       }
     });
   }
-  finnaly() {}
+  finally(finallyCallback) {
+    let p = this.constructor;
+    return this.then(
+      (data) => {
+        return p.resolve(finallyCallback()).then(() => data);
+      },
+      (err) => {
+        return p.resolve(finallyCallback()).then(() => {
+          throw err;
+        });
+      }
+    );
+  }
 }
-
-Promise.prototype.finnaly = function (finallyCallback) {
-  let p = this.constructor;
-  return this.then(
-    (data) => {
-      return p.resolve(finallyCallback()).then(() => data);
-    },
-    (err) => {
-      return p.resolve(finallyCallback()).then(() => {
-        throw err;
-      });
-    }
-  );
-};
 
 Promise.deferred = function () {
   let dfd = {};

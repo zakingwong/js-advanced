@@ -107,7 +107,7 @@ Promise.allSettled([
 
 // Promise.finally
 ZakingPromise.resolve("zaking-finally")
-  .finnaly(() => {
+  .finally(() => {
     console.log("finally~~~");
   })
   .then((data) => {
@@ -118,7 +118,7 @@ ZakingPromise.resolve("zaking-finally")
   });
 
 ZakingPromise.resolve("zaking-finally")
-  .finnaly(() => {
+  .finally(() => {
     setTimeout(() => {
       console.log("setTimeout-finally~~~");
     }, 1000);
